@@ -1,7 +1,5 @@
-import * as net from "net";
+import { TCPServer } from "./adapters/driving/comms/tcp/server";
+import type { CommsPort } from "./ports/driving/comms/comms-port";
 
-const server: net.Server = net.createServer((connection: net.Socket) => {
-  // Handle connection
-});
-
-server.listen(6379, "127.0.0.1");
+const server: CommsPort = new TCPServer();
+server.start(6379);
