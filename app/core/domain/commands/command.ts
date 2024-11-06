@@ -1,4 +1,5 @@
 import type RedisType from "../datatypes/redis-type";
+import CommandMediator from "../../command-mediator";
 
 export default abstract class Command {
   abstract name: string;
@@ -8,5 +9,5 @@ export default abstract class Command {
     this.args = args;
   }
 
-  abstract execute(): RedisType;
+  abstract execute(CommandMediator: CommandMediator): RedisType;
 }
