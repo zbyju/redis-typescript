@@ -1,4 +1,5 @@
 import type Command from "../../../core/domain/commands/command";
+import EchoCommand from "../../../core/domain/commands/echo-command";
 import PingCommand from "../../../core/domain/commands/ping-command";
 import { UnknownCommand } from "../../../core/domain/commands/unknown-command";
 import RedisArray from "../../../core/domain/datatypes/redis-array";
@@ -11,10 +12,12 @@ function argsToStrings(args: RedisValue[]): string[] {
   );
 }
 
-export function stringToCommand(name: string, _args?: string[]): Command {
+export function stringToCommand(name: string, args?: string[]): Command {
   switch (name) {
     case "PING":
       return new PingCommand();
+    case "ECHO":
+      return new EchoCommand(args || []);
     default:
       return new UnknownCommand();
   }
