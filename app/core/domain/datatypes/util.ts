@@ -9,7 +9,7 @@ export function decodeString(
 ): [RedisType, number] | undefined {
   value = value.toString();
   const prefix = value[index];
-  console.log(`Decoding: ${value} with prefix: ${prefix}`);
+  logStartDecoding("DECODE", value, index);
 
   switch (prefix) {
     case "*":
@@ -31,7 +31,7 @@ export function logStartDecoding(
   console.log(
     `Decoding ${name}, at ${index} (first char: ${value.at(index)}), got:
 -----------------------
-${value}
+|${value}|
 -----------------------\n`,
   );
 }
@@ -45,7 +45,7 @@ export function logEndDecoding(
   console.log(
     `Decoded ${name}, result:
 -----------------------
-${result}
+|${result}|
 -----------------------
 Continue at ${index} (first continue char: ${value.at(index)})`,
   );
