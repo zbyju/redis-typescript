@@ -56,7 +56,8 @@ bun dev
 ```
 
 By default, the server listens on `localhost` at port `6379`, the standard Redis port. You can change the port in the configuration file if needed.
-Commands Implemented
+
+## Commands Implemented
 
 This project currently supports the following commands:
 
@@ -67,7 +68,8 @@ This project currently supports the following commands:
 - `GET <key>`: Retrieves the value associated with a key.
 
 These commands are implemented following the Redis specification for consistent behavior with Redis clients.
-Planned Features
+
+## Planned Features
 
 The next stages of development focus on implementing advanced Redis features, including:
 
@@ -76,7 +78,7 @@ The next stages of development focus on implementing advanced Redis features, in
 - Streams: Supports Redis streams, ideal for message queues and event logging.
 - Transactions: Implements atomic transactions using commands like `MULTI`, `EXEC`, and `DISCARD`.
 
-Detailed Planned Features
+### Detailed Planned Features
 
 - Persistence
     - RDB file configuration and support.
@@ -90,7 +92,7 @@ Detailed Planned Features
     - Stream support with XREAD, blocking reads, and more.
     - Transaction management with MULTI, EXEC, and DISCARD commands.
 
-# Contributing
+## Contributing
 
 Contributions are welcome! To contribute:
 
@@ -98,7 +100,3 @@ Contributions are welcome! To contribute:
 - Create a new branch with a descriptive name.
 - Make your changes and test thoroughly.
 - Submit a pull request with a detailed explanation of changes.
-
-# License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
