@@ -1,5 +1,5 @@
-import { decodeString } from "./from-string";
 import RedisType, { type RedisValue } from "./redis-type";
+import { decodeString, logEndDecoding, logStartDecoding } from "./util";
 
 export default class RedisArray extends RedisType {
   private value: RedisType[];
@@ -21,14 +21,9 @@ export default class RedisArray extends RedisType {
     value: string,
     index: number = 0,
   ): [RedisArray, number] | undefined {
-    console.log(
-      `Decoding array. Got: ${value} at ${index}. First char: ${value.at(index)}, ${value[index] !== "*"}`,
-    );
+    logStartDecoding("ARRAY", value, index);
 
-    if (value[index] !== "*") {
-      console.log(`Not an array. Got: ${value} at ${index}`);
-      return undefined;
-    }
+    if (value[index] !== "*") return undefined;
 
     // Parse length
     let lengthStr = "";
@@ -41,7 +36,6 @@ export default class RedisArray extends RedisType {
       lengthStr += value[index];
       index++;
     }
-    console.log(`Length: ${lengthStr}`);
     const length = parseInt(lengthStr);
 
     // Jump to \n and then on the first character of the actual string
@@ -51,19 +45,14 @@ export default class RedisArray extends RedisType {
 
     for (let i = 0; i < length; i++) {
       const val = decodeString(value, index);
-      if (val === undefined) {
-        console.log();
-        return undefined;
-      }
+      if (val === undefined) return undefined;
 
       const [newValue, newIndex] = val;
       result.push(newValue);
       index = newIndex;
     }
 
-    console.log(
-      `Decoded array. Result: ${result}, continue at ${index}. First continue: ${value.at(index)}`,
-    );
+    logEndDecoding("ARRAY", value, index, new RedisArray(result));
     return [new RedisArray(result), index];
   }
 }

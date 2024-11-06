@@ -22,3 +22,31 @@ export function decodeString(
       return [new SimpleString(value.toString()), value.length];
   }
 }
+
+export function logStartDecoding(
+  name: string,
+  value: string,
+  index: number,
+): void {
+  console.log(
+    `Decoding ${name}, at ${index} (first char: ${value.at(index)}), got:
+-----------------------
+${value}
+-----------------------\n`,
+  );
+}
+
+export function logEndDecoding(
+  name: string,
+  value: string,
+  index: number,
+  result: RedisType,
+): void {
+  console.log(
+    `Decoded ${name}, result:
+-----------------------
+${result}
+-----------------------
+Continue at ${index} (first continue char: ${value.at(index)})`,
+  );
+}

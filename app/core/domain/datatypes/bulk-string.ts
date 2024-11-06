@@ -1,4 +1,5 @@
 import RedisType from "./redis-type";
+import { logEndDecoding, logStartDecoding } from "./util";
 
 export default class BulkString extends RedisType {
   private value: string | null;
@@ -21,9 +22,7 @@ export default class BulkString extends RedisType {
     value: string,
     index: number = 0,
   ): [BulkString, number] | undefined {
-    console.log(
-      `Decoding bulk string. Got: ${value} at ${index}. First char: ${value.at(index)}`,
-    );
+    logStartDecoding("BULK STRING", value, index);
     if (value[index] !== "$") return undefined;
 
     // Parse length
@@ -53,8 +52,11 @@ export default class BulkString extends RedisType {
       i++;
     }
 
-    console.log(
-      `Decoded bulk string. Result: ${result}, continue at ${index + length + 2}. First continue: ${value.at(index + length + 2)}`,
+    logEndDecoding(
+      "BULK STRING",
+      value,
+      index + length + 2,
+      new BulkString(result),
     );
     return [new BulkString(result), index + length + 2];
   }

@@ -1,4 +1,5 @@
 import RedisType from "./redis-type";
+import { logEndDecoding, logStartDecoding } from "./util";
 
 export default class SimpleString extends RedisType {
   private value: string;
@@ -20,9 +21,7 @@ export default class SimpleString extends RedisType {
     value: string,
     index: number = 0,
   ): [SimpleString, number] | undefined {
-    console.log(
-      `Decoding simple string. Got: ${value} at ${index}. First char: ${value.at(index)}`,
-    );
+    logStartDecoding("SIMPLE STRING", value, index);
 
     if (value[index] !== "+") return undefined;
 
@@ -38,9 +37,7 @@ export default class SimpleString extends RedisType {
       index++;
     }
 
-    console.log(
-      `Decoded simple string. Result: ${result}, continue at ${index + 2}. First continue: ${value[index + 2]}`,
-    );
+    logEndDecoding("SIMPLE STRING", value, index + 2, new SimpleString(result));
     return [new SimpleString(result), index + 2];
   }
 }

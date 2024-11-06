@@ -1,9 +1,9 @@
 import type Command from "../../../core/domain/commands/command";
 import PingCommand from "../../../core/domain/commands/ping-command";
 import { UnknownCommand } from "../../../core/domain/commands/unknown-command";
-import { decodeString } from "../../../core/domain/datatypes/from-string";
 import RedisArray from "../../../core/domain/datatypes/redis-array";
 import type { RedisValue } from "../../../core/domain/datatypes/redis-type";
+import { decodeString } from "../../../core/domain/datatypes/util";
 
 function argsToStrings(args: RedisValue[]): string[] {
   return args.map((arg) =>
