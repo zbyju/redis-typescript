@@ -1,4 +1,7 @@
+import type { StorageValue } from "./item-port";
+import type Item from "./item-port";
+
 export interface StoragePort {
-  get(key: string): string | undefined;
-  set(key: string, value: string): void;
+  get(key: StorageValue): StorageValue | undefined;
+  set(key: string, value: Item): void;
 }

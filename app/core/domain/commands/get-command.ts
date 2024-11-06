@@ -9,10 +9,11 @@ export default class GetCommand extends Command {
     if (this.args.length === 0) return new BulkString(null);
 
     const key = this.args[0];
-    const value = commandMediator.storage.get(key);
+    const item = commandMediator.storage.get(key);
 
-    if (value === undefined) return new BulkString(null);
+    // Couldn't find the key
+    if (item === undefined) return new BulkString(null);
 
-    return new BulkString(value);
+    return new BulkString(item);
   }
 }
