@@ -36,13 +36,14 @@ export default class BulkString extends RedisType {
       lengthStr += value[index];
       index++;
     }
+
     const length = parseInt(lengthStr);
 
     // Jump to \n and then on the first character of the actual string
     index += 2;
 
     // Check if we have enough characters
-    if (index + length + 2 < value.length) return undefined;
+    if (index + length + 2 > value.length) return undefined;
 
     // Parse value
     let result = "";
