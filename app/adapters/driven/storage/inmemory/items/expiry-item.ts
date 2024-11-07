@@ -1,4 +1,4 @@
-import type { StorageValue } from "../../../../../ports/driving/storage/item-port";
+import type { StorageValue } from "../../../../../ports/driven/storage/item-port";
 import BasicItem from "./basic-item";
 
 export default class ExpiryItem extends BasicItem {

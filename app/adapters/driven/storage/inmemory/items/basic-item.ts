@@ -1,5 +1,5 @@
-import type { StorageValue } from "../../../../../ports/driving/storage/item-port";
-import type Item from "../../../../../ports/driving/storage/item-port";
+import type { StorageValue } from "../../../../../ports/driven/storage/item-port";
+import type Item from "../../../../../ports/driven/storage/item-port";
 
 export default class BasicItem implements Item {
   private val: StorageValue;

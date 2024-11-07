@@ -14,7 +14,7 @@ export default class RedisArray extends RedisType {
   }
 
   toString(): string {
-    return `$${this.value.length}\r\n${this.value.map((v) => v.toString()).join()}`;
+    return `*${this.value.length}\r\n${this.value.map((v) => v.toString()).join("")}`;
   }
 
   static override fromString(

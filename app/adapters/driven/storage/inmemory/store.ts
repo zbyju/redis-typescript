@@ -1,6 +1,6 @@
-import type { StorageValue } from "../../../../ports/driving/storage/item-port";
-import type Item from "../../../../ports/driving/storage/item-port";
-import type { StoragePort } from "../../../../ports/driving/storage/storage-port";
+import type { StorageValue } from "../../../../ports/driven/storage/item-port";
+import type Item from "../../../../ports/driven/storage/item-port";
+import type { StoragePort } from "../../../../ports/driven/storage/storage-port";
 
 export class InMemoryStore implements StoragePort {
   private store: Map<string, Item>;

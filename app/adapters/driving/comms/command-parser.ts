@@ -1,4 +1,5 @@
 import type Command from "../../../core/domain/commands/command";
+import ConfigCommand from "../../../core/domain/commands/config/config-command";
 import EchoCommand from "../../../core/domain/commands/echo-command";
 import GetCommand from "../../../core/domain/commands/get-command";
 import PingCommand from "../../../core/domain/commands/ping-command";
@@ -24,6 +25,8 @@ export function stringToCommand(name: string, args?: string[]): Command {
       return new GetCommand(...(args || []));
     case "SET":
       return new SetCommand(...(args || []));
+    case "CONFIG":
+      return new ConfigCommand(...(args || []));
     default:
       return new UnknownCommand();
   }
